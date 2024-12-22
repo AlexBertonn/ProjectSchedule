@@ -1,4 +1,5 @@
 import NewTask from "./NewTask.jsx";
+import { useState } from "react";
 
 
 // export default function Tasks({onAdd, onDelete, tasks}){
@@ -18,7 +19,8 @@ import NewTask from "./NewTask.jsx";
 //     )
 // };
 
-export default function Tasks({ onAdd, onDelete, tasks }) {
+export default function Tasks({ onAdd, onDelete, tasks, doing, setDoing, functionDoing }) {
+  
     return (
       <section>
         <h2 className="text-2xl font-bold text-stone-700 mb-4">Tasks</h2>
@@ -29,6 +31,10 @@ export default function Tasks({ onAdd, onDelete, tasks }) {
             {tasks.map((task) => (
               <li key={task.id} className="flex justify-between my-4">
                 <span>{task.text}</span>
+                <button onClick={() => {
+    console.log('Button clicked');
+    functionDoing();  // Disparando a função onDoing, que está ligada a handleDoing
+  }} className="text-stone-700 hover:text-red-500" style={{backgroundColor: doing ? 'green' : 'gray'}}>Doing</button>
                 <button className="text-stone-700 hover:text-red-500">Clear</button>
               </li>
             ))}
