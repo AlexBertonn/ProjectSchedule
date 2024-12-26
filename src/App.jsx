@@ -11,17 +11,17 @@ const [projectState, setProjectState ] = useState({
 });
 
 //Aqui vou deiaxr um teste de um useState pra criação de um toDo, doing e done.
-const [doing, setDoing] = useState(false);
-function handleDoing() {
-  setDoing((prev) => !prev)
-  console.log("on doing is called my man")
-}
+ const [doing, setDoing] = useState(false);
+ function handleDoing() {
+   setDoing((prev) => !prev)
+   console.log("on doing is called my man")
+ }
 
-const [done, setDone] = useState(false);
-function handleDone() {
-  setDone((prev) => !prev)
-  console.log("done is called my man")
-}
+ const [done, setDone] = useState(false);
+ function handleDone() {
+   setDone((prev) => !prev)
+   console.log("done is called my man")
+ }
 //
 
 function handleAddTask(text){
@@ -30,7 +30,9 @@ function handleAddTask(text){
     const newtask = {
       text: text,
       projectId: prevState.selectedProjectId,
-      id: taskId
+      id: taskId,
+      doing: false,
+      done: false,
     };
     return {
       ...prevState,
@@ -39,8 +41,13 @@ function handleAddTask(text){
   })
 }
 
-function handleDeleteTask(){
-
+function handleDeleteTask(id){
+  setProjectState((prevState) => {
+    return{
+      ...prevState,
+    tasks: prevState.tasks.filter((task) => task.id !== id)
+    }
+  })
 }  
 
 function  handleStartProject (){
@@ -101,7 +108,7 @@ let content = (<SelectedProject
                   project={selectedPeoject} 
                   onDelete={handleDeleteProject} 
                   onAddTask={handleAddTask} 
-                  onDleteTask={handleDeleteTask}
+                  onDeleteTask={handleDeleteTask}
                   tasks={projectState.tasks}
                   //Aqui vem o hook do useState do Doing
                   functionDoing={handleDoing}

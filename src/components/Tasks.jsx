@@ -45,7 +45,7 @@ export default function Tasks({ onAdd, onDelete, tasks, doing, setDoing, functio
                         style={{backgroundColor: done ? 'yellow' : 'gray'}}
                         >Done
                 </button>
-                <button className="text-stone-700 hover:text-red-500">Clear</button>
+                <button className="text-stone-700 hover:text-red-500" onClick={() => onDelete(task.id)}>Clear</button>
               </li>
             ))}
           </ul>
