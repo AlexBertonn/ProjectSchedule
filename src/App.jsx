@@ -16,6 +16,12 @@ function handleDoing() {
   setDoing((prev) => !prev)
   console.log("on doing is called my man")
 }
+
+const [done, setDone] = useState(false);
+function handleDone() {
+  setDone((prev) => !prev)
+  console.log("done is called my man")
+}
 //
 
 function handleAddTask(text){
@@ -101,6 +107,10 @@ let content = (<SelectedProject
                   functionDoing={handleDoing}
                   doing={doing}
                   setDoing={setDoing}
+                  //Aqui vem o hook do useState do done
+                  functionDone={handleDone}
+                  done={done}
+                  setDone={setDone}
                 />);
 
 if (projectState.selectedProjectId === null){
